@@ -3,6 +3,8 @@ parse-image
 
 [![codecov.io](https://codecov.io/github/flovilmart/parse-image/coverage.svg?branch=master)](https://codecov.io/github/flovilmart/parse-image?branch=master)
 [![Build Status](https://travis-ci.org/flovilmart/parse-image.svg?branch=master)](https://travis-ci.org/flovilmart/parse-image)
+[![npm version](https://img.shields.io/npm/v/parse-image.svg?style=flat)](https://www.npmjs.com/package/parse-image)
+
 
 Port of Parse Image for parse-env based on node-gm
 
@@ -25,8 +27,6 @@ If the pre-install script fails, the installation continues but the module may n
 heroku comes with imagemagick (convert) by default.
 
 You need to manually install [heroku-buildpack-graphicsmagick](https://github.com/mcollina/heroku-buildpack-graphicsmagick) 
-
-Follow the instructions in the link and the pre-install warnings should auto-magically disappear.
 
 **Update:** As `heroko-16` stack does not work with `heroku-buildpack-graphicsmagick` any more you can use a different way to get this working on heroku instead:
 
