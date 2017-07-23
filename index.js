@@ -50,6 +50,15 @@ Image.prototype.scale = function(options){
 	return _wrap(self, self._image.scale(options.width, options.height),options);
 }
 
+Image.prototype.resize = function(options){
+  var self = this;
+  if (options.ignoreAspectRatio) {
+    return _wrap(self, self._image.resizeExact(options.width, options.height),options);
+  } else {
+    return _wrap(self, self._image.resize(options.width, options.height),options);
+  }
+}
+
 Image.prototype.setFormat = function(format,options){
 	var self = this;
 	self._image.setFormat(format.toLowerCase());
