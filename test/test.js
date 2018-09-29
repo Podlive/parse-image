@@ -18,19 +18,19 @@ var TestManipulation = function(manipulation, resultFile, comparisonFile) {
   }).then(function(data){
     assert(typeof data != 'undefined');
     fs.writeFileSync(resultFile, data);
-    var promise = new Parse.Promise();
-    imageDiff({
-      actualImage: resultFile,
-      expectedImage: comparisonFile
-    }, function(err, res){
-      assert(res == true);
-      if (err) {
-        promise.reject(err);
-      } else {
-        promise.resolve(res);
-      }
-    })
-    return promise;
+    return new Promise((resolve, reject) => {
+      imageDiff({
+        actualImage: resultFile,
+        expectedImage: comparisonFile
+      }, function(err, res){
+        assert(res == true);
+        if (err) {
+          reject(err);
+        } else {
+          resolve(res);
+        }
+      });
+    });
   });
 }
 
