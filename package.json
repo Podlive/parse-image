@@ -2,16 +2,16 @@
   "name": "parse-image",
   "description": "parse-image",
   "main": "index.js",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "dependencies": {
-    "gm": "~1.21.1",
+    "gm": "~1.23.1",
     "parse": "^2.0"
   },
   "devDependencies": {
     "codecov": "^1.0.1",
-    "image-diff": "^1.3.0",
+    "image-diff": "^2.0.0",
     "istanbul": "^0.4.2",
-    "mocha": "^2.3.4"
+    "mocha": "^5.2.0"
   },
   "scripts": {
     "preinstall": "./install.sh",
@@ -19,14 +19,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/flovilmart/parse-image.git"
+    "url": "https://github.com/parse-server-modules/parse-image.git"
   },
   "author": "Florent Vilmart",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/flovilmart/parse-image/issues"
+    "url": "https://github.com/parse-server-modules/parse-image/issues"
   },
-  "homepage": "https://github.com/flovilmart/parse-image",
+  "homepage": "https://github.com/parse-server-modules/parse-image",
   "keywords": [
     "parse",
     "image",

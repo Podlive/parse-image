@@ -76,6 +76,15 @@ function cropTo(width, height) {
   },"./result-crop-"+width+"-"+height+".png",  "./test/result-crop-"+width+"-"+height+".png");
 }
 
+function resize() {
+  return TestManipulation(function(image){
+    return image.resize({
+      width: 200,
+      height: 200,
+      ignoreAspectRatio: true
+    })
+  },"./result-resize.png",  "./test/result-resize.png");
+}
 
 function scale() {
   return TestManipulation(function(image){
@@ -101,7 +110,7 @@ describe('Image', function() {
     it('should pad the image without error', function(done) {
 		pad().then(function(){
 			done();
-	  }).fail(function(err){
+	  }).catch(function(err){
 			assert(err == null);
 			done();
 		})
@@ -112,7 +121,7 @@ describe('Image', function() {
     it('should pad the image without error', function(done) {
 		padTo(400, 500).then(function(){
 			done();
-	  }).fail(function(err){
+	  }).catch(function(err){
 			assert(err == null);
 			done();
 		})
@@ -123,7 +132,7 @@ describe('Image', function() {
     it('should crop the image without error', function(done) {
 		crop().then(function(){
 			done();
-	  }).fail(function(err){
+	  }).catch(function(err){
 			assert(err == null);
 			done();
 		})
@@ -134,7 +143,7 @@ describe('Image', function() {
     it('should crop the image without error', function(done) {
 		cropTo(100, 200).then(function(){
 			done();
-	  }).fail(function(err){
+	  }).catch(function(err){
 			assert(err == null);
 			done();
 		})
@@ -145,7 +154,7 @@ describe('Image', function() {
     it('should scale the image at a ratio', function(done) {
 		scale().then(function(){
 			done();
-	  }).fail(function(err){
+	  }).catch(function(err){
 			assert(err == null);
 			done();
 		})
@@ -156,17 +165,28 @@ describe('Image', function() {
     it('should scale the image at a width and height', function(done) {
 		scaleWith(200, 100).then(function(){
 			done();
-	  }).fail(function(err){
+	  }).catch(function(err){
 			assert(err == null);
 			done();
 		})
+    });
+  });
+
+  describe('#resize()', function() {
+    it('should resize the image to correct width and height', function(done) {
+    resize().then(function(){
+      done();
+    }).catch(function(err){
+      assert(err == null);
+      done();
+    })
     });
   });
   
   describe('#setData()', function() {
     it('should fail setting wrong data', function(done) {
 		  var image = new Image();
-      var buf = new Buffer("abc", 'utf-8');
+      var buf = Buffer.from("abc", 'utf-8');
       var errHit = 0;
       image.setData(buf, {
         sucess: function(){
