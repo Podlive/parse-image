@@ -186,7 +186,7 @@ describe('Image', function() {
   describe('#setData()', function() {
     it('should fail setting wrong data', function(done) {
 		  var image = new Image();
-      var buf = new Buffer("abc", 'utf-8');
+      var buf = Buffer.from("abc", 'utf-8');
       var errHit = 0;
       image.setData(buf, {
         sucess: function(){
