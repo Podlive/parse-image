@@ -76,6 +76,15 @@ function cropTo(width, height) {
   },"./result-crop-"+width+"-"+height+".png",  "./test/result-crop-"+width+"-"+height+".png");
 }
 
+function resize() {
+  return TestManipulation(function(image){
+    return image.resize({
+      width: 200,
+      height: 200,
+      ignoreAspectRatio: false
+    })
+  },"./result-resize.png",  "./test/result-resize.png");
+}
 
 function scale() {
   return TestManipulation(function(image){
@@ -160,6 +169,17 @@ describe('Image', function() {
 			assert(err == null);
 			done();
 		})
+    });
+  });
+
+  describe('#resize()', function() {
+    it('should resize the image to correct width and height', function(done) {
+    resize().then(function(){
+      done();
+    }).fail(function(err){
+      assert(err == null);
+      done();
+    })
     });
   });
   
