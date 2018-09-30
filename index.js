@@ -17,7 +17,7 @@ Image.prototype.height = function(){
 }
 
 Image.prototype.data = function(){
-	return this._data;
+	return Promise.resolve(this._data);
 }
 
 Image.prototype.crop = function(options){
