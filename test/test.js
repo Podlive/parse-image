@@ -110,7 +110,7 @@ describe('Image', function() {
     it('should pad the image without error', function(done) {
 		pad().then(function(){
 			done();
-	  }).fail(function(err){
+	  }).catch(function(err){
 			assert(err == null);
 			done();
 		})
@@ -121,7 +121,7 @@ describe('Image', function() {
     it('should pad the image without error', function(done) {
 		padTo(400, 500).then(function(){
 			done();
-	  }).fail(function(err){
+	  }).catch(function(err){
 			assert(err == null);
 			done();
 		})
@@ -132,7 +132,7 @@ describe('Image', function() {
     it('should crop the image without error', function(done) {
 		crop().then(function(){
 			done();
-	  }).fail(function(err){
+	  }).catch(function(err){
 			assert(err == null);
 			done();
 		})
@@ -143,7 +143,7 @@ describe('Image', function() {
     it('should crop the image without error', function(done) {
 		cropTo(100, 200).then(function(){
 			done();
-	  }).fail(function(err){
+	  }).catch(function(err){
 			assert(err == null);
 			done();
 		})
@@ -154,7 +154,7 @@ describe('Image', function() {
     it('should scale the image at a ratio', function(done) {
 		scale().then(function(){
 			done();
-	  }).fail(function(err){
+	  }).catch(function(err){
 			assert(err == null);
 			done();
 		})
@@ -165,7 +165,7 @@ describe('Image', function() {
     it('should scale the image at a width and height', function(done) {
 		scaleWith(200, 100).then(function(){
 			done();
-	  }).fail(function(err){
+	  }).catch(function(err){
 			assert(err == null);
 			done();
 		})
@@ -176,7 +176,7 @@ describe('Image', function() {
     it('should resize the image to correct width and height', function(done) {
     resize().then(function(){
       done();
-    }).fail(function(err){
+    }).catch(function(err){
       assert(err == null);
       done();
     })
