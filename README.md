@@ -22,8 +22,19 @@ If the pre-install script fails, the installation continues but the module may n
 
 ## Heroku installation
 
-heroku comes with imagemagick (convert) by default. 
+heroku comes with imagemagick (convert) by default.
 
 You need to manually install [heroku-buildpack-graphicsmagick](https://github.com/mcollina/heroku-buildpack-graphicsmagick) 
 
-Follow the instructions in the link and the pre-install warnings should auto-magically disappear
+Follow the instructions in the link and the pre-install warnings should auto-magically disappear.
+
+**Update:** As `heroko-16` stack does not work with `heroku-buildpack-graphicsmagick` any more you can use a different way to get this working on heroku instead:
+
+* Setup [heroku-buildpack-apt](https://github.com/heroku/heroku-buildpack-apt) on your heroku instance
+* Add this `Aptfile` to your main app repository:
+
+```
+graphicsmagick
+libpng-dev
+zlib1g-dev
+```
