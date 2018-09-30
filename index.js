@@ -1,13 +1,11 @@
 var gm = require('gm').subClass({imageMagick: true});
-// Require parse if undefined for the promise
-if (typeof Parse == "undefined") {
-	Parse = require("parse").Parse;
-}
 
 module.exports = Image = function(){}
 
 Image.prototype.setData = function(data, options){
-  return _setData(this, data, undefined, options);
+  return new Promise((resolve, reject) => {
+    _setData(this, data, resolve, reject, options);
+  });
 }
 
 Image.prototype.width = function(){
@@ -50,15 +48,6 @@ Image.prototype.scale = function(options){
 	return _wrap(self, self._image.scale(options.width, options.height),options);
 }
 
-Image.prototype.resize = function(options){
-  var self = this;
-  if (options.ignoreAspectRatio) {
-    return _wrap(self, self._image.resizeExact(options.width, options.height),options);
-  } else {
-    return _wrap(self, self._image.resize(options.width, options.height),options);
-  }
-}
-
 Image.prototype.setFormat = function(format,options){
 	var self = this;
 	self._image.setFormat(format.toLowerCase());
@@ -66,9 +55,9 @@ Image.prototype.setFormat = function(format,options){
 }
 
 Image.prototype.format = function(options){
-  var p = new Parse.Promise();
-	this._image.format(callbackify(p, options));
-  return p;
+  return new Promise((resolve, reject) => {
+    this._image.format(callbackify(resolve, reject, options));
+  });
 }
 
 Image.prototype.pad = function(options) {
@@ -98,45 +87,43 @@ Image.prototype.pad = function(options) {
 }
 
 
-var _setData = function(self, data, p, options) {
-	p = p || new Parse.Promise();
+var _setData = function(self, data, resolve, reject, options) {
 	self._data = data;
 	self._image = gm(data);
   self._image.size({bufferStream: true}, function(err, size){
   	self._size = size;
-    callbackify(p, options)(err, self);
+    callbackify(resolve, reject, options)(err, self);
   });
-  return p;
 }
 
-var _callback = function(self, p, options){
+var _callback = function(self, resolve, reject, options){
   options = options || {};
 
 	return function(err, buf){
 		if (err) {
 			options.error && options.error(err);
-		  p.reject(err);
-		}else{
-			_setData(self, buf, p, options);
+		  reject(err);
+		} else{
+			_setData(self, buf, resolve, reject, options);
 		}
 	}
 }
 
 var _wrap = function(self, gm, options){
-	var p = new Parse.Promise();
-	gm.toBuffer(_callback(self, p, options));
-	return p;
+  return new Promise((resolve, reject) => {
+    gm.toBuffer(_callback(self, resolve, reject, options));
+  });
 }
 
-var callbackify = function(p, options) {
+var callbackify = function(resolve, reject, options) {
   options = options || {};
   return function(err, res) {
     if (err) {
       options.error && options.error(err);
-      return p.reject(err);
+      return reject(err);
     } else {
       options.success && options.success(err);
-      return p.resolve(res);
+      return resolve(res);
     }
   };
 }
