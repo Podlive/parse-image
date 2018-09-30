@@ -81,7 +81,7 @@ function resize() {
     return image.resize({
       width: 200,
       height: 200,
-      ignoreAspectRatio: false
+      ignoreAspectRatio: true
     })
   },"./result-resize.png",  "./test/result-resize.png");
 }
