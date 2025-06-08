@@ -32,6 +32,6 @@
     "module"
   ],
   "peerDependencies": {
-    "parse": "^2.0"
+    "parse": "^6.0.0"
   }
 }
