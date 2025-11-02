@@ -7,14 +7,13 @@
     "gm": "1.25.1"
   },
   "devDependencies": {
-    "codecov": "^1.0.1",
     "image-diff": "^2.0.0",
-    "istanbul": "^0.4.2",
-    "mocha": "^5.2.0"
+    "istanbul": "^0.4.5",
+    "mocha": "11.7.4"
   },
   "scripts": {
     "preinstall": "./install.sh",
-    "test": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec && ./node_modules/.bin/codecov"
+    "test": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec"
   },
   "repository": {
     "type": "git",
@@ -32,6 +31,6 @@
     "module"
   ],
   "peerDependencies": {
-    "parse": "^6.0.0"
+    "parse": "^7.0.0"
   }
 }
