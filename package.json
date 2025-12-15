@@ -9,7 +9,7 @@
   "devDependencies": {
     "image-diff": "^2.0.0",
     "istanbul": "^0.4.5",
-    "mocha": "11.7.4"
+    "mocha": "11.7.5"
   },
   "scripts": {
     "preinstall": "./install.sh",
@@ -31,6 +31,6 @@
     "module"
   ],
   "peerDependencies": {
-    "parse": "^7.0.0"
+    "parse": "^8.0.0"
   }
 }
